@@ -1,0 +1,28 @@
+{
+    "name": "felixl7/laravel-cdn",
+    "description": "CDN Helper",
+    "require": {
+        "php": ">=7.3.0",
+        "illuminate/support": "^8.0"
+    },
+    "require-dev": {
+    },
+    "authors": [
+        {
+            "name": "Felix Lipinski",
+            "email": "info@felixlipinski.de"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "FelixL7\\Cdn\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "FelixL7\\Cdn\\CDNServiceProvider"
+            ]
+        }
+    }
+}
