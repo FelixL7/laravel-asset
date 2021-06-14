@@ -3,18 +3,17 @@
 namespace FelixL7\Cdn;
 
 use FelixL7\Cdn\Exceptions\MissingCdnException;
-use FelixL7\Cdn\Exceptions\MissingCdnUrlException;
 use FelixL7\Cdn\Exceptions\MissingResourceVersionException;
 use FelixL7\Cdn\Interfaces\ICdn;
 
 abstract class AbstractLib
 {
-    private $min = false;
-    private $loadingAttribute = null;
-    private $version = null;
-    private $cache = true;
-    private $cacheConfigVersion = false;
-    private $cdn = null;
+    protected $min = false;
+    protected $loadingAttribute = null;
+    protected $version = null;
+    protected $cache = true;
+    protected $cacheConfigVersion = false;
+    protected $cdn = null;
     protected $has = [];
 
 
@@ -191,14 +190,6 @@ abstract class AbstractLib
         return $this->libName;
     }
 
-    protected function getCssFileName() : string {
-        return $this->getLibName();
-    }
-
-    protected function getJsFileName() : string {
-        return $this->getLibName();
-    }
-
     /**
      *
      * @return bool
@@ -324,6 +315,30 @@ abstract class AbstractLib
      * @return string
      */
     protected function getLibNamePathSegment() : string {
+        return $this->getLibName();
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getName() : string {
+        return $this->getLibName();
+    }
+
+    /**
+     *
+     * @return string
+     */
+    protected function getCssFileName() : string {
+        return $this->getLibName();
+    }
+
+    /**
+     *
+     * @return string
+     */
+    protected function getJsFileName() : string {
         return $this->getLibName();
     }
 

@@ -12,8 +12,4 @@ class JQuery extends AbstractLib implements ICdnEntry
         'css' => false,
         'js' => true,
     ];
-
-    public function getName() : string {
-        return $this->getLibName();
-    }
 }

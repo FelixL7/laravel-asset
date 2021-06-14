@@ -14,14 +14,6 @@ class Swiper extends AbstractLib implements ICdnEntry
         'js' => true,
     ];
 
-    public function getName() : string {
-        return $this->getLibName();
-    }
-
-    /**
-     *
-     * @return string
-     */
     protected function getLibNamePathSegment() : string {
         switch ($this->getCdn()) {
             case Cdnjs::class:
@@ -32,14 +24,24 @@ class Swiper extends AbstractLib implements ICdnEntry
     }
 
     protected function getCssFileName() : string {
-        return $this->cdnjsFileName();
+        switch ($this->getCdn()) {
+            case Cdnjs::class:
+                return $this->cdnjsFileName();
+        }
+
+        return $this->getLibName();
     }
 
     protected function getJsFileName() : string {
-        return $this->cdnjsFileName();
+        switch ($this->getCdn()) {
+            case Cdnjs::class:
+                return $this->cdnjsFileName();
+        }
+
+        return $this->getLibName();
     }
 
-    protected function cdnjsFileName() : string {
+    private function cdnjsFileName() : string {
         return 'swiper-bundle';
     }
 }

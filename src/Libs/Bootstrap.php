@@ -12,8 +12,4 @@ class Bootstrap extends AbstractLib implements ICdnEntry
         'css' => true,
         'js' => true,
     ];
-
-    public function getName() : string {
-        return $this->getLibName();
-    }
 }
