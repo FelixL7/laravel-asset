@@ -6,6 +6,8 @@
         "illuminate/support": "^8.0"
     },
     "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "nunomaduro/collision": "^5.3"
     },
     "authors": [
         {
@@ -18,11 +20,24 @@
             "FelixL7\\Cdn\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "FelixL7\\Cdn\\Tests\\": "tests/"
+        }
+    },
     "extra": {
         "laravel": {
             "providers": [
                 "FelixL7\\Cdn\\CDNServiceProvider"
             ]
         }
+    },
+    "scripts": {
+        "test": [
+            "vendor/bin/testbench package:test"
+        ],
+        "test-parallel": [
+            "vendor/bin/testbench package:test --parallel"
+        ]
     }
 }
