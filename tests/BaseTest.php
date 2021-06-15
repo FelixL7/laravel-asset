@@ -15,7 +15,7 @@ class BaseTest extends TestCase
 
     protected function getEnvironmentSetUp($app)
     {
-        $app['config']->set('laravel-cdn.cdn', Cdnjs::class);
+        $this->resetCdnConfig();
     }
 
     protected function getPackageProviders($app)
@@ -23,5 +23,9 @@ class BaseTest extends TestCase
         return [
             CDNServiceProvider::class,
         ];
+    }
+
+    protected function resetCdnConfig() {
+        app()['config']->set('laravel-cdn.cdn', Cdnjs::class);
     }
 }

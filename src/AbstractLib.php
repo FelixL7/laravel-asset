@@ -231,10 +231,10 @@ abstract class AbstractLib
             $url = $cdn->getCSSFilePathWithoutExtension();
 
             if($this->getMin()) {
-                $url .= 'min.';
+                $url .= '.min';
             }
 
-            $url .= 'css';
+            $url .= '.css';
 
             if(!$this->getCache()) {
                 $url = $this->withNoCache($url);
