@@ -15,9 +15,11 @@ abstract class AbstractCDN
         $this->fileName = $fileName;
     }
 
-    public abstract function getCSSFilePathWithoutExtension() : string;
+    public function getFilePathWithoutExtension($filePath = "/") : string {
+        return "{$this->getDomain()}{$this->getLibPath()}/{$this->libPathName}@{$this->version}{$filePath}/{$this->fileName}";
+    }
 
-    public abstract function getJsFilePathWithoutExtension() : string;
+    public abstract function getDomain() : string;
 
-    public abstract function getFilePathWithoutExtension(array $args = []) : string;
+    protected abstract function getLibPath() : string;
 }

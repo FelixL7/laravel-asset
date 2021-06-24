@@ -12,4 +12,12 @@ class Bootstrap extends AbstractLib implements ICdnEntry
         'css' => true,
         'js' => true,
     ];
+
+    protected function cdnCssFilePathAfterVersion() : string {
+        return "/dist/css";
+    }
+
+    protected function cdnJsFilePathAfterVersion() : string {
+        return "/dist/js";
+    }
 }

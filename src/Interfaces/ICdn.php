@@ -4,7 +4,6 @@ namespace FelixL7\Cdn\Interfaces;
 
 interface ICdn
 {
-    public function getCSSFilePathWithoutExtension() : string;
-
-    public function getJsFilePathWithoutExtension() : string;
+    public function getFilePathWithoutExtension($filePath = "/") : string;
+    public function getDomain() : string;
 }

@@ -142,7 +142,7 @@ abstract class AbstractLib
         return $this;
     }
 
-    public function cdn(ICdn $cdn) {
+    public function cdn(string $cdn) {
         $this->cdn = $cdn;
 
         return $this;
@@ -226,9 +226,7 @@ abstract class AbstractLib
      */
     public function cssUrl() : string {
         if($this->hasCss()) {
-            $cdnClass = $this->getCdn();
-            $cdn = new $cdnClass($this->getLibNamePathSegment(), $this->getVersion(), $this->getJsFileName());
-            $url = $cdn->getCSSFilePathWithoutExtension();
+            $url = $this->getCssFilePathWithoutExtension();
 
             if($this->getMin()) {
                 $url .= '.min';
@@ -251,9 +249,7 @@ abstract class AbstractLib
      */
     public function jsUrl() : string {
         if($this->hasJs()) {
-            $cdnClass = $this->getCdn();
-            $cdn = new $cdnClass($this->getLibNamePathSegment(), $this->getVersion(), $this->getJsFileName());
-            $url = $cdn->getJsFilePathWithoutExtension();
+            $url = $this->getJsFilePathWithoutExtension();
 
             if($this->getMin()) {
                 $url .= '.min';
@@ -269,6 +265,26 @@ abstract class AbstractLib
         }
 
         return '';
+    }
+
+    /**
+     *
+     * @return string
+     */
+    protected function getJsFilePathWithoutExtension() : string {
+        $cdn = $this->getCdnInstance();
+
+        return $cdn->getFilePathWithoutExtension($this->cdnJsFilePathAfterVersion());
+    }
+
+    /**
+     *
+     * @return string
+     */
+    protected function getCssFilePathWithoutExtension() : string {
+        $cdn = $this->getCdnInstance();
+
+        return $cdn->getFilePathWithoutExtension($this->cdnCssFilePathAfterVersion());
     }
 
     /**
@@ -312,6 +328,16 @@ abstract class AbstractLib
 
     /**
      *
+     * @return ICdn
+     */
+    protected function getCdnInstance() : ICdn {
+        $cdnClass = $this->getCdn();
+
+        return new $cdnClass($this->getLibNamePathSegment(), $this->getVersion(), $this->getJsFileName());
+    }
+
+    /**
+     *
      * @return string
      */
     protected function getLibNamePathSegment() : string {
@@ -340,6 +366,22 @@ abstract class AbstractLib
      */
     protected function getJsFileName() : string {
         return $this->getLibName();
+    }
+
+    /**
+     *
+     * @return string
+     */
+    protected function cdnCssFilePathAfterVersion() : string {
+        return "/";
+    }
+
+    /**
+     *
+     * @return string
+     */
+    protected function cdnJsFilePathAfterVersion() : string {
+        return "/";
     }
 
 

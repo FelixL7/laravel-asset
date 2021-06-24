@@ -7,17 +7,13 @@ use FelixL7\Cdn\Interfaces\ICdn;
 class JsDelivr extends AbstractCDN implements ICdn
 {
     public const DOMAIN = 'https://cdn.jsdelivr.net';
-    public const LIB_PATH = '/npm/';
+    public const LIB_PATH = '/npm';
 
-    public function getCSSFilePathWithoutExtension() : string {
-        return self::DOMAIN.self::LIB_PATH.$this->libPathName.'@'.$this->version.'/dist/css/'.$this->fileName;
+    public function getDomain() : string {
+        return self::DOMAIN;
     }
 
-    public function getJsFilePathWithoutExtension() : string {
-        return self::DOMAIN.self::LIB_PATH.$this->libPathName.'@'.$this->version.'/dist/js/'.$this->fileName;
-    }
-
-    public function getFilePathWithoutExtension(array $args = []) : string {
-        return self::DOMAIN.self::LIB_PATH.$this->libPathName.'@'.$this->version.'/dist/';
+    protected function getLibPath() : string {
+        return self::LIB_PATH;
     }
 }
