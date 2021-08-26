@@ -151,7 +151,7 @@ class BootstrapTest extends BaseTest
             'version' => '5.0.1',
         ]);
         $bootstrap->configCdn();
-        $this->assertEquals('https://cdnjs.cloudflare.com/ajax/libs/bootstrap@5.0.1/dist/js/bootstrap.js', $bootstrap->jsUrl());
-        $this->assertEquals('https://cdnjs.cloudflare.com/ajax/libs/bootstrap@5.0.1/dist/css/bootstrap.css', $bootstrap->cssUrl());
+        $this->assertEquals('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/dist/js/bootstrap.js', $bootstrap->jsUrl());
+        $this->assertEquals('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/dist/css/bootstrap.css', $bootstrap->cssUrl());
     }
 }
