@@ -38,7 +38,7 @@ abstract class AbstractLib
      * Gibt die Einbindung der JS Ressource zurück
      */
     public function js() : string {
-        if($this->hasCss()) {
+        if($this->hasJs()) {
             return '<script src="'.$this->jsUrl().'"'.$this->withLoadingAttribute().'></script>';
         }
 
