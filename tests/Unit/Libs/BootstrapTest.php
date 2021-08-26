@@ -53,6 +53,14 @@ class BootstrapTest extends BaseTest
         $this->assertEquals('<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.js" defer></script>', (new Bootstrap)->async()->defer()->js());
     }
 
+    public function testLinkTag()
+    {
+        $this->assertEquals('<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.css" rel="stylesheet">', (new Bootstrap)->css());
+        $this->assertEquals('<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">', (new Bootstrap)->min()->css());
+        $this->assertEquals('<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.css" rel="stylesheet">', (new Bootstrap)->defer()->css());
+        $this->assertEquals('<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.css" rel="stylesheet">', (new Bootstrap)->async()->css());
+    }
+
     public function testUrlBuilding() {
         //JS
         $this->assertEquals('https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.js', (new Bootstrap)->jsUrl());
