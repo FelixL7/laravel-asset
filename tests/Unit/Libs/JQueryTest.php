@@ -20,7 +20,7 @@ class JQueryTest extends BaseTest
     {
         parent::getEnvironmentSetUp($app);
 
-        $app['config']->set('laravel-cdn.libs.jquery',[
+        $app['config']->set('laravel-resource.libs.jquery',[
             'version' => '3.6.0',
             //Default CDN for jQuery is Cdnjs
             'cdn' => Cdnjs::class,
@@ -30,7 +30,7 @@ class JQueryTest extends BaseTest
     protected function resetCdnConfig() {
         parent::resetCdnConfig();
 
-        app()['config']->set('laravel-cdn.libs.jquery',[
+        app()['config']->set('laravel-resource.libs.jquery',[
             'version' => '3.6.0',
             //Default CDN for jQuery is Cdnjs
             'cdn' => Cdnjs::class,
@@ -95,11 +95,11 @@ class JQueryTest extends BaseTest
 
         //Cache from config version
         $customCacheVersion = '2.0.1';
-        app()['config']->set('laravel-cdn.cache_version', $customCacheVersion);
+        app()['config']->set('laravel-resource.cache_version', $customCacheVersion);
         $this->assertEquals('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js?v='.$customCacheVersion, (new JQuery)->disableCacheWithConfigVersion()->jsUrl());
 
         $customLibCacheVersion = '3.5.2';
-        app()['config']->set('laravel-cdn.libs.jquery.cache_version', $customLibCacheVersion);
+        app()['config']->set('laravel-resource.libs.jquery.cache_version', $customLibCacheVersion);
         $this->assertEquals('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js?v='.$customLibCacheVersion, (new JQuery)->disableCacheWithConfigVersion()->jsUrl());
 
         $this->resetCdnConfig();
@@ -116,13 +116,13 @@ class JQueryTest extends BaseTest
         $this->assertEquals('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js', $jQuery->jsUrl());
 
         //Lib CDN changed in config
-        app()['config']->set('laravel-cdn.libs.jquery.cdn', Unpkg::class);
+        app()['config']->set('laravel-resource.libs.jquery.cdn', Unpkg::class);
         $jQuery->configCdn();
         $this->assertEquals('https://unpkg.com/jquery@3.6.0/jquery.js', $jQuery->jsUrl());
 
         //No lib CDN set -> default CDN
-        app()['config']->set('laravel-cdn.cdn', Cdnjs::class);
-        app()['config']->set('laravel-cdn.libs.jquery',[
+        app()['config']->set('laravel-resource.cdn', Cdnjs::class);
+        app()['config']->set('laravel-resource.libs.jquery',[
             'version' => '3.6.0',
         ]);
         $jQuery->configCdn();

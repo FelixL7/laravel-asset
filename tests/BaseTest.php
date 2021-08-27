@@ -26,6 +26,6 @@ class BaseTest extends TestCase
     }
 
     protected function resetCdnConfig() {
-        app()['config']->set('laravel-cdn.cdn', Cdnjs::class);
+        app()['config']->set('laravel-resource.cdn', Cdnjs::class);
     }
 }

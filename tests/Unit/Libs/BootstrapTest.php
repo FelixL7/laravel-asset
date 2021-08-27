@@ -21,7 +21,7 @@ class BootstrapTest extends BaseTest
     {
         parent::getEnvironmentSetUp($app);
 
-        $app['config']->set('laravel-cdn.libs.bootstrap',[
+        $app['config']->set('laravel-resource.libs.bootstrap',[
             'version' => '5.0.1',
             //Default CDN for Bootstrap is JsDelivr
             'cdn' => JsDelivr::class,
@@ -31,7 +31,7 @@ class BootstrapTest extends BaseTest
     protected function resetCdnConfig() {
         parent::resetCdnConfig();
 
-        app()['config']->set('laravel-cdn.libs.bootstrap',[
+        app()['config']->set('laravel-resource.libs.bootstrap',[
             'version' => '5.0.1',
             //Default CDN for Bootstrap is JsDelivr
             'cdn' => JsDelivr::class,
@@ -114,12 +114,12 @@ class BootstrapTest extends BaseTest
 
         //Cache from config version
         $customCacheVersion = '2.0.1';
-        app()['config']->set('laravel-cdn.cache_version', $customCacheVersion);
+        app()['config']->set('laravel-resource.cache_version', $customCacheVersion);
         $this->assertEquals('https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.js?v='.$customCacheVersion, (new Bootstrap)->disableCacheWithConfigVersion()->jsUrl());
         $this->assertEquals('https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.css?v='.$customCacheVersion, (new Bootstrap)->disableCacheWithConfigVersion()->cssUrl());
 
         $customLibCacheVersion = '3.5.2';
-        app()['config']->set('laravel-cdn.libs.bootstrap.cache_version', $customLibCacheVersion);
+        app()['config']->set('laravel-resource.libs.bootstrap.cache_version', $customLibCacheVersion);
         $this->assertEquals('https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.js?v='.$customLibCacheVersion, (new Bootstrap)->disableCacheWithConfigVersion()->jsUrl());
         $this->assertEquals('https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.css?v='.$customLibCacheVersion, (new Bootstrap)->disableCacheWithConfigVersion()->cssUrl());
 
@@ -140,14 +140,14 @@ class BootstrapTest extends BaseTest
         $this->assertEquals('https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.css', $bootstrap->cssUrl());
 
         //Lib CDN changed in config
-        app()['config']->set('laravel-cdn.libs.bootstrap.cdn', Unpkg::class);
+        app()['config']->set('laravel-resource.libs.bootstrap.cdn', Unpkg::class);
         $bootstrap->configCdn();
         $this->assertEquals('https://unpkg.com/bootstrap@5.0.1/dist/js/bootstrap.js', $bootstrap->jsUrl());
         $this->assertEquals('https://unpkg.com/bootstrap@5.0.1/dist/css/bootstrap.css', $bootstrap->cssUrl());
 
         //No lib CDN set -> default CDN
-        app()['config']->set('laravel-cdn.cdn', Cdnjs::class);
-        app()['config']->set('laravel-cdn.libs.bootstrap',[
+        app()['config']->set('laravel-resource.cdn', Cdnjs::class);
+        app()['config']->set('laravel-resource.libs.bootstrap',[
             'version' => '5.0.1',
         ]);
         $bootstrap->configCdn();

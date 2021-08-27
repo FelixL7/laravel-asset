@@ -84,7 +84,7 @@ abstract class AbstractLib
      * Führt dazu, dass die Ressourcen in der von der Konfig gegebenen Version zurückgegeben werden
      */
     public function configVersion() {
-        $version = config('laravel-cdn.libs.'.$this->getLibName().'.version');
+        $version = config('laravel-resource.libs.'.$this->getLibName().'.version');
 
         if(is_null($version)) {
             throw new MissingResourceVersionException('Missing resource version for resource '.$this->getLibName());
@@ -323,7 +323,7 @@ abstract class AbstractLib
      * @return string|null
      */
     protected function configFromLibOrGlobal(string $attribute, $default = null) {
-        return config('laravel-cdn.libs.'.$this->getLibName().'.'.$attribute, config('laravel-cdn.'.$attribute, $default));
+        return config('laravel-resource.libs.'.$this->getLibName().'.'.$attribute, config('laravel-resource.'.$attribute, $default));
     }
 
     /**

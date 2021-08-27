@@ -20,7 +20,7 @@ class SwiperTest extends BaseTest
     {
         parent::getEnvironmentSetUp($app);
 
-        $app['config']->set('laravel-cdn.libs.swiper',[
+        $app['config']->set('laravel-resource.libs.swiper',[
             'version' => '7.0.1',
             //Default CDN for Swiper is Cdnjs
             'cdn' => Cdnjs::class,
@@ -30,7 +30,7 @@ class SwiperTest extends BaseTest
     protected function resetCdnConfig() {
         parent::resetCdnConfig();
 
-        app()['config']->set('laravel-cdn.libs.swiper',[
+        app()['config']->set('laravel-resource.libs.swiper',[
             'version' => '7.0.1',
             //Default CDN for Swiper is Cdnjs
             'cdn' => Cdnjs::class,
@@ -113,12 +113,12 @@ class SwiperTest extends BaseTest
 
         //Cache from config version
         $customCacheVersion = '2.0.1';
-        app()['config']->set('laravel-cdn.cache_version', $customCacheVersion);
+        app()['config']->set('laravel-resource.cache_version', $customCacheVersion);
         $this->assertEquals('https://cdnjs.cloudflare.com/ajax/libs/Swiper/7.0.1/swiper-bundle.js?v='.$customCacheVersion, (new Swiper)->disableCacheWithConfigVersion()->jsUrl());
         $this->assertEquals('https://cdnjs.cloudflare.com/ajax/libs/Swiper/7.0.1/swiper-bundle.css?v='.$customCacheVersion, (new Swiper)->disableCacheWithConfigVersion()->cssUrl());
 
         $customLibCacheVersion = '3.5.2';
-        app()['config']->set('laravel-cdn.libs.swiper.cache_version', $customLibCacheVersion);
+        app()['config']->set('laravel-resource.libs.swiper.cache_version', $customLibCacheVersion);
         $this->assertEquals('https://cdnjs.cloudflare.com/ajax/libs/Swiper/7.0.1/swiper-bundle.js?v='.$customLibCacheVersion, (new Swiper)->disableCacheWithConfigVersion()->jsUrl());
         $this->assertEquals('https://cdnjs.cloudflare.com/ajax/libs/Swiper/7.0.1/swiper-bundle.css?v='.$customLibCacheVersion, (new Swiper)->disableCacheWithConfigVersion()->cssUrl());
 
@@ -139,14 +139,14 @@ class SwiperTest extends BaseTest
         $this->assertEquals('https://cdnjs.cloudflare.com/ajax/libs/Swiper/7.0.1/swiper-bundle.css', $swiper->cssUrl());
 
         //Lib CDN changed in config
-        app()['config']->set('laravel-cdn.libs.swiper.cdn', Unpkg::class);
+        app()['config']->set('laravel-resource.libs.swiper.cdn', Unpkg::class);
         $swiper->configCdn();
         $this->assertEquals('https://unpkg.com/swiper@7.0.1/swiper-bundle.js', $swiper->jsUrl());
         $this->assertEquals('https://unpkg.com/swiper@7.0.1/swiper-bundle.css', $swiper->cssUrl());
 
         //No lib CDN set -> default CDN
-        app()['config']->set('laravel-cdn.cdn', Cdnjs::class);
-        app()['config']->set('laravel-cdn.libs.swiper',[
+        app()['config']->set('laravel-resource.cdn', Cdnjs::class);
+        app()['config']->set('laravel-resource.libs.swiper',[
             'version' => '7.0.1',
         ]);
         $swiper->configCdn();
