@@ -1,9 +1,9 @@
 <?php
 
-namespace FelixL7\Cdn\Tests;
+namespace FelixL7\Resource\Tests;
 
-use FelixL7\Cdn\CDNs\Cdnjs;
-use FelixL7\Cdn\CDNServiceProvider;
+use FelixL7\Resource\CDNs\Cdnjs;
+use FelixL7\Resource\ResourceServiceProvider;
 use Orchestra\Testbench\TestCase;
 
 class BaseTest extends TestCase
@@ -21,7 +21,7 @@ class BaseTest extends TestCase
     protected function getPackageProviders($app)
     {
         return [
-            CDNServiceProvider::class,
+            ResourceServiceProvider::class,
         ];
     }
 

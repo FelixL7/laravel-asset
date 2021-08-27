@@ -1,6 +1,6 @@
 <?php
 
-namespace FelixL7\Cdn\Interfaces;
+namespace FelixL7\Resource\Interfaces;
 
 interface ICdnEntry
 {

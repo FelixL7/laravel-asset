@@ -1,10 +1,10 @@
 <?php
 
-namespace FelixL7\Cdn;
+namespace FelixL7\Resource;
 
-use FelixL7\Cdn\Exceptions\MissingCdnException;
-use FelixL7\Cdn\Exceptions\MissingResourceVersionException;
-use FelixL7\Cdn\Interfaces\ICdn;
+use FelixL7\Resource\Exceptions\MissingCdnException;
+use FelixL7\Resource\Exceptions\MissingResourceVersionException;
+use FelixL7\Resource\Interfaces\ICdn;
 
 abstract class AbstractLib
 {

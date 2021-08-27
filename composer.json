@@ -1,5 +1,5 @@
 {
-    "name": "felixl7/laravel-cdn",
+    "name": "felixl7/laravel-resource",
     "description": "CDN Helper",
     "require": {
         "php": ">=7.3.0",
@@ -18,18 +18,18 @@
     ],
     "autoload": {
         "psr-4": {
-            "FelixL7\\Cdn\\": "src/"
+            "FelixL7\\Resource\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "FelixL7\\Cdn\\Tests\\": "tests/"
+            "FelixL7\\Resource\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "FelixL7\\Cdn\\CDNServiceProvider"
+                "FelixL7\\Resource\\ResourceServiceProvider"
             ]
         }
     },

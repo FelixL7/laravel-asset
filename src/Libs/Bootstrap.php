@@ -1,9 +1,9 @@
 <?php
 
-namespace FelixL7\Cdn\Libs;
+namespace FelixL7\Resource\Libs;
 
-use FelixL7\Cdn\AbstractLib;
-use FelixL7\Cdn\Interfaces\ICdnEntry;
+use FelixL7\Resource\AbstractLib;
+use FelixL7\Resource\Interfaces\ICdnEntry;
 
 class Bootstrap extends AbstractLib implements ICdnEntry
 {

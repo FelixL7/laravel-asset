@@ -1,6 +1,6 @@
 <?php
 
-namespace FelixL7\Cdn\Exceptions;
+namespace FelixL7\Resource\Exceptions;
 
 use Exception;
 

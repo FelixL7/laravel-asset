@@ -1,12 +1,12 @@
 <?php
 
 
-namespace FelixL7\Cdn\Tests\Unit\Libs;
+namespace FelixL7\Resource\Tests\Unit\Libs;
 
-use FelixL7\Cdn\CDNs\Cdnjs;
-use FelixL7\Cdn\CDNs\Unpkg;
-use FelixL7\Cdn\Libs\Swiper;
-use FelixL7\Cdn\Tests\BaseTest;
+use FelixL7\Resource\CDNs\Cdnjs;
+use FelixL7\Resource\CDNs\Unpkg;
+use FelixL7\Resource\Libs\Swiper;
+use FelixL7\Resource\Tests\BaseTest;
 
 class SwiperTest extends BaseTest
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace FelixL7\Cdn;
+namespace FelixL7\Resource;
 
-class CDN
+class Resource
 {
     private $libs = [];
 

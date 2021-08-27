@@ -1,7 +1,7 @@
 <?php
 
-use FelixL7\Cdn\CDNs\Cdnjs;
-use FelixL7\Cdn\CDNs\JsDelivr;
+use FelixL7\Resource\CDNs\Cdnjs;
+use FelixL7\Resource\CDNs\JsDelivr;
 
 return [
     //main cdn

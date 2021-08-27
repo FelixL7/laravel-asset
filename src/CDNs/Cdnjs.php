@@ -1,8 +1,8 @@
 <?php
 
-namespace FelixL7\Cdn\CDNs;
+namespace FelixL7\Resource\CDNs;
 
-use FelixL7\Cdn\Interfaces\ICdn;
+use FelixL7\Resource\Interfaces\ICdn;
 
 class Cdnjs extends AbstractCDN implements ICdn
 {
