@@ -46,6 +46,9 @@ class SwiperTest extends BaseTest
 
     public function testScriptTag()
     {
+        $this->assertEquals('<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/7.0.1/swiper-bundle.js"></script>', (new Swiper)->sync()->js());
+        $this->assertEquals('<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/7.0.1/swiper-bundle.js"></script>', (new Swiper)->defer()->sync()->js());
+        $this->assertEquals('<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/7.0.1/swiper-bundle.js"></script>', (new Swiper)->async()->sync()->js());
         $this->assertEquals('<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/7.0.1/swiper-bundle.js" async></script>', (new Swiper)->async()->js());
         $this->assertEquals('<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/7.0.1/swiper-bundle.js" async></script>', (new Swiper)->defer()->async()->js());
         $this->assertEquals('<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/7.0.1/swiper-bundle.js" defer></script>', (new Swiper)->defer()->js());

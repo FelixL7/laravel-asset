@@ -95,6 +95,12 @@ abstract class AbstractLib
         return $this;
     }
 
+    public function sync() {
+        $this->loadingAttribute = null;
+
+        return $this;
+    }
+
     /**
      * Load Resource asynchronous
      */

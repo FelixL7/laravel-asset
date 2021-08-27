@@ -46,6 +46,9 @@ class JQueryTest extends BaseTest
 
     public function testScriptTag()
     {
+        $this->assertEquals('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>', (new JQuery)->sync()->js());
+        $this->assertEquals('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>', (new JQuery)->defer()->sync()->js());
+        $this->assertEquals('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>', (new JQuery)->async()->sync()->js());
         $this->assertEquals('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" async></script>', (new JQuery)->async()->js());
         $this->assertEquals('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" async></script>', (new JQuery)->defer()->async()->js());
         $this->assertEquals('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" defer></script>', (new JQuery)->defer()->js());

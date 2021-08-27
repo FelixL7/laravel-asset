@@ -47,6 +47,9 @@ class BootstrapTest extends BaseTest
 
     public function testScriptTag()
     {
+        $this->assertEquals('<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.js"></script>', (new Bootstrap)->sync()->js());
+        $this->assertEquals('<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.js"></script>', (new Bootstrap)->defer()->sync()->js());
+        $this->assertEquals('<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.js"></script>', (new Bootstrap)->async()->sync()->js());
         $this->assertEquals('<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.js" async></script>', (new Bootstrap)->async()->js());
         $this->assertEquals('<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.js" async></script>', (new Bootstrap)->defer()->async()->js());
         $this->assertEquals('<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.js" defer></script>', (new Bootstrap)->defer()->js());
