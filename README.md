@@ -1,5 +1,26 @@
 # laravel-resource
 
+You can use this package to get any Frontend Resource from any CDN you want in a laravel-like notation.
+```php
+use FelixL7\Resource\Facades\Resource;
+
+Resource::bootstrap()->min()->js();
+//<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
+```
+
+With this package come 3 CDN implementations:
+* [cdnjs](https://cdnjs.com/)
+* [jsDelivr](https://www.jsdelivr.com/)
+* [UNPKG](https://unpkg.com/)
+
+And 3 Libraries:
+* [Bootstrap](https://getbootstrap.com/)
+* [jQuery](https://jquery.com/)
+* [Swiper](https://swiperjs.com/)
+
+You can use these implementations to implement other CDNs and libraries, you want to use.<br>
+It's really simple to add new. Try it out!
+
 ## Installation
 
 ```bash
