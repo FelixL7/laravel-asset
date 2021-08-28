@@ -4,7 +4,7 @@ namespace FelixL7\Resource\CDNs;
 
 use FelixL7\Resource\Interfaces\ICdn;
 
-class JsDelivr extends AbstractCDN implements ICdn
+class JsDelivr extends AbstractCdn implements ICdn
 {
     public const DOMAIN = 'https://cdn.jsdelivr.net';
     public const LIB_PATH = '/npm';

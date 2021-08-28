@@ -2,7 +2,7 @@
 
 namespace FelixL7\Resource\CDNs;
 
-abstract class AbstractCDN
+abstract class AbstractCdn
 {
     protected $libPathName;
     protected $version;

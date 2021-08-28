@@ -4,7 +4,7 @@ namespace FelixL7\Resource\CDNs;
 
 use FelixL7\Resource\Interfaces\ICdn;
 
-class Unpkg extends AbstractCDN implements ICdn
+class Unpkg extends AbstractCdn implements ICdn
 {
     public const DOMAIN = 'https://unpkg.com';
     public const LIB_PATH = '';
