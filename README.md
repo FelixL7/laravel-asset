@@ -1,10 +1,10 @@
-# laravel-resource
+# laravel-asset
 
-You can use this package to get any Frontend Resource from any CDN you want in a laravel-like notation.
+You can use this package to get any Frontend Asset from any CDN you want in a laravel-like notation.
 ```php
-use FelixL7\Resource\Facades\Resource;
+use FelixL7\Asset\Facades\Asset;
 
-Resource::bootstrap()->min()->js();
+Asset::bootstrap()->min()->js();
 //<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
 ```
 
@@ -24,7 +24,7 @@ It's really simple to add new. Try it out!
 ## Installation
 
 ```bash
-composer require felixl7/laravel-resource
+composer require felixl7/laravel-asset
 ```
 
 ## Register Libs
@@ -32,12 +32,12 @@ composer require felixl7/laravel-resource
 You can register libraries everywhere with the register method.
 
 ```php
-use FelixL7\Resource\Facades\Resource;
-use FelixL7\Resource\Libs\Bootstrap;
-use FelixL7\Resource\Libs\JQuery;
-use FelixL7\Resource\Libs\Swiper;
+use FelixL7\Asset\Facades\Asset;
+use FelixL7\Asset\Libs\Bootstrap;
+use FelixL7\Asset\Libs\JQuery;
+use FelixL7\Asset\Libs\Swiper;
 
-Resource::register([
+Asset::register([
     Bootstrap::class,
     JQuery::class,
     Swiper::class
@@ -47,8 +47,8 @@ Resource::register([
 ## Configuration
 
 ```php
-use FelixL7\Resource\CDNs\Cdnjs;
-use FelixL7\Resource\CDNs\JsDelivr;
+use FelixL7\Asset\CDNs\Cdnjs;
+use FelixL7\Asset\CDNs\JsDelivr;
 
 return [
     //main cdn -> required
@@ -58,7 +58,7 @@ return [
     'libs' => [
         //libName, must match $libName in library
         'bootstrap' => [
-            //use resource version -> required
+            //use asset version -> required
             'version' => '5.0.1',
             //overwrite main cdn
             'cdn' => JsDelivr::class,
@@ -77,78 +77,78 @@ return [
 
 If you registered the library you can use it like:
 ```php
-use FelixL7\Resource\Facades\Resource;
+use FelixL7\Asset\Facades\Asset;
 
-Resource::bootstrap()->min()->async()->disableCacheWithConfigVersion()->js();
+Asset::bootstrap()->min()->async()->disableCacheWithConfigVersion()->js();
 //<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js?v=1" async></script>
 
-Resource::bootstrap()->min()->css();
+Asset::bootstrap()->min()->css();
 //<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
 ```
 
 Or in Blade templates:
 ```php
-@inject('resource', FelixL7\Resource\Resource::class)
+@inject('asset', FelixL7\Asset\Asset::class)
 
-{{$resource->bootstrap()->min()->async()->disableCacheWithConfigVersion()->js()}}
+{{$asset->bootstrap()->min()->async()->disableCacheWithConfigVersion()->js()}}
 ```
 
 ### Available Methods
 
 ```php
-use FelixL7\Resource\Facades\Resource;
+use FelixL7\Asset\Facades\Asset;
 
 // Example
-//Resource::bootstrap()->js()
+//Asset::bootstrap()->js()
 //<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.js"></script>
 
 //min()
-Resource::bootstrap()->min()->js();
+Asset::bootstrap()->min()->js();
 //<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
 
 //readable()
-Resource::bootstrap()->readable()->js();
-Resource::bootstrap()->min()->readable()->js();
+Asset::bootstrap()->readable()->js();
+Asset::bootstrap()->min()->readable()->js();
 //<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.js"></script>
 
 //version(string $version)
-Resource::bootstrap()->version('4.0.0')->js();
+Asset::bootstrap()->version('4.0.0')->js();
 //<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.js"></script>
 
 //configVersion()
 //Version from config file
-Resource::bootstrap()->configVersion()->js();
-Resource::bootstrap()->version('4.0.0')->configVersion()->js();
+Asset::bootstrap()->configVersion()->js();
+Asset::bootstrap()->version('4.0.0')->configVersion()->js();
 //<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.js"></script>
 
 //disableCache()
-Resource::bootstrap()->disableCache()->js();
+Asset::bootstrap()->disableCache()->js();
 //<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.js?v=1630062180"></script>
 
 //disableCacheWithConfigVersion()
-Resource::bootstrap()->disableCacheWithConfigVersion()->js();
+Asset::bootstrap()->disableCacheWithConfigVersion()->js();
 //<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.js?v=1"></script>
 
 //enableCache()
-Resource::bootstrap()->enableCache()->js();
-Resource::bootstrap()->disableCache()->enableCache()->js();
+Asset::bootstrap()->enableCache()->js();
+Asset::bootstrap()->disableCache()->enableCache()->js();
 //<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.js"></script>
 
 //cdn(string $cdn)
-Resource::bootstrap()->cdn(\FelixL7\Resource\CDNs\Cdnjs::class)->js();
+Asset::bootstrap()->cdn(\FelixL7\Asset\CDNs\Cdnjs::class)->js();
 //<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/dist/js/bootstrap.js"></script>
 
 //configCdn()
-Resource::bootstrap()->configCdn()->js();
-Resource::bootstrap()->cdn(\FelixL7\Resource\CDNs\Cdnjs::class)->configCdn()->js();
+Asset::bootstrap()->configCdn()->js();
+Asset::bootstrap()->cdn(\FelixL7\Asset\CDNs\Cdnjs::class)->configCdn()->js();
 //<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.js"></script>
 
 //hasCss() : bool
-Resource::bootstrap()->hasCss();
+Asset::bootstrap()->hasCss();
 //true
 
 //hasJs() : bool
-Resource::bootstrap()->hasJs();
+Asset::bootstrap()->hasJs();
 //true
 ```
 
@@ -156,12 +156,12 @@ Resource::bootstrap()->hasJs();
 
 ```php
 //css()
-Resource::bootstrap()->css();
+Asset::bootstrap()->css();
 //<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.css" rel="stylesheet">
 //If hasCss() returns false, en empty string will be returned
 
 //cssUrl()
-Resource::bootstrap()->cssUrl();
+Asset::bootstrap()->cssUrl();
 //https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.css
 //If hasCss() returns false, en empty string will be returned
 ```
@@ -170,27 +170,27 @@ Resource::bootstrap()->cssUrl();
 
 ```php
 //js()
-Resource::bootstrap()->js();
+Asset::bootstrap()->js();
 //<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.js"></script>
 //If hasJs() returns false, en empty string will be returned
 
 //jsUrl()
-Resource::bootstrap()->jsUrl();
+Asset::bootstrap()->jsUrl();
 //https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.js
 //If hasJs() returns false, en empty string will be returned
 
 //sync()
-Resource::bootstrap()->sync()->js();
-Resource::bootstrap()->defer()->sync()->js();
+Asset::bootstrap()->sync()->js();
+Asset::bootstrap()->defer()->sync()->js();
 //<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.js"></script>
 
 //async()
-Resource::bootstrap()->async()->js();
-Resource::bootstrap()->defer()->async()->js();
+Asset::bootstrap()->async()->js();
+Asset::bootstrap()->defer()->async()->js();
 //<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.js" async></script>
 
 //defer()
-Resource::bootstrap()->defer()->js();
-Resource::bootstrap()->async()->defer()->js();
+Asset::bootstrap()->defer()->js();
+Asset::bootstrap()->async()->defer()->js();
 //<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.js" defer></script>
 ```

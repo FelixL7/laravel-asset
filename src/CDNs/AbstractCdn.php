@@ -1,6 +1,6 @@
 <?php
 
-namespace FelixL7\Resource\CDNs;
+namespace FelixL7\Asset\CDNs;
 
 abstract class AbstractCdn
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace FelixL7\Resource\CDNs;
+namespace FelixL7\Asset\CDNs;
 
-use FelixL7\Resource\Interfaces\ICdn;
+use FelixL7\Asset\Interfaces\ICdn;
 
 class Unpkg extends AbstractCdn implements ICdn
 {

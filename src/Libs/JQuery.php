@@ -1,9 +1,9 @@
 <?php
 
-namespace FelixL7\Resource\Libs;
+namespace FelixL7\Asset\Libs;
 
-use FelixL7\Resource\AbstractLib;
-use FelixL7\Resource\Interfaces\ICdnEntry;
+use FelixL7\Asset\AbstractLib;
+use FelixL7\Asset\Interfaces\ICdnEntry;
 
 class JQuery extends AbstractLib implements ICdnEntry
 {

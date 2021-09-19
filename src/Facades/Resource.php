@@ -1,13 +1,13 @@
 <?php
 
-namespace FelixL7\Resource\Facades;
+namespace FelixL7\Asset\Facades;
 
-use FelixL7\Resource\Resource as ResourceResource;
+use FelixL7\Asset\Asset as AssetAsset;
 use Illuminate\Support\Facades\Facade;
 
-class Resource extends Facade
+class Asset extends Facade
 {
     protected static function getFacadeAccessor() {
-        return ResourceResource::class;
+        return AssetAsset::class;
     }
 }

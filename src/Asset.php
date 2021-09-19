@@ -1,8 +1,8 @@
 <?php
 
-namespace FelixL7\Resource;
+namespace FelixL7\Asset;
 
-class Resource
+class Asset
 {
     private $libs = [];
 

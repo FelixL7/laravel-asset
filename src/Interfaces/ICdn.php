@@ -1,6 +1,6 @@
 <?php
 
-namespace FelixL7\Resource\Interfaces;
+namespace FelixL7\Asset\Interfaces;
 
 interface ICdn
 {

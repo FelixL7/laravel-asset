@@ -1,9 +1,9 @@
 <?php
 
-namespace FelixL7\Resource\Tests;
+namespace FelixL7\Asset\Tests;
 
-use FelixL7\Resource\CDNs\Cdnjs;
-use FelixL7\Resource\ResourceServiceProvider;
+use FelixL7\Asset\CDNs\Cdnjs;
+use FelixL7\Asset\AssetServiceProvider;
 use Orchestra\Testbench\TestCase;
 
 class BaseTest extends TestCase
@@ -21,11 +21,11 @@ class BaseTest extends TestCase
     protected function getPackageProviders($app)
     {
         return [
-            ResourceServiceProvider::class,
+            AssetServiceProvider::class,
         ];
     }
 
     protected function resetCdnConfig() {
-        app()['config']->set('laravel-resource.cdn', Cdnjs::class);
+        app()['config']->set('laravel-asset.cdn', Cdnjs::class);
     }
 }

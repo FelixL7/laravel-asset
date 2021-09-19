@@ -1,12 +1,12 @@
 <?php
 
 
-namespace FelixL7\Resource\Tests\Unit\Libs;
+namespace FelixL7\Asset\Tests\Unit\Libs;
 
-use FelixL7\Resource\CDNs\Cdnjs;
-use FelixL7\Resource\CDNs\Unpkg;
-use FelixL7\Resource\Libs\JQuery;
-use FelixL7\Resource\Tests\BaseTest;
+use FelixL7\Asset\CDNs\Cdnjs;
+use FelixL7\Asset\CDNs\Unpkg;
+use FelixL7\Asset\Libs\JQuery;
+use FelixL7\Asset\Tests\BaseTest;
 
 class JQueryTest extends BaseTest
 {
@@ -20,7 +20,7 @@ class JQueryTest extends BaseTest
     {
         parent::getEnvironmentSetUp($app);
 
-        $app['config']->set('laravel-resource.libs.jquery',[
+        $app['config']->set('laravel-asset.libs.jquery',[
             'version' => '3.6.0',
             //Default CDN for jQuery is Cdnjs
             'cdn' => Cdnjs::class,
@@ -30,7 +30,7 @@ class JQueryTest extends BaseTest
     protected function resetCdnConfig() {
         parent::resetCdnConfig();
 
-        app()['config']->set('laravel-resource.libs.jquery',[
+        app()['config']->set('laravel-asset.libs.jquery',[
             'version' => '3.6.0',
             //Default CDN for jQuery is Cdnjs
             'cdn' => Cdnjs::class,
@@ -98,11 +98,11 @@ class JQueryTest extends BaseTest
 
         //Cache from config version
         $customCacheVersion = '2.0.1';
-        app()['config']->set('laravel-resource.cache_version', $customCacheVersion);
+        app()['config']->set('laravel-asset.cache_version', $customCacheVersion);
         $this->assertEquals('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js?v='.$customCacheVersion, (new JQuery)->disableCacheWithConfigVersion()->jsUrl());
 
         $customLibCacheVersion = '3.5.2';
-        app()['config']->set('laravel-resource.libs.jquery.cache_version', $customLibCacheVersion);
+        app()['config']->set('laravel-asset.libs.jquery.cache_version', $customLibCacheVersion);
         $this->assertEquals('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js?v='.$customLibCacheVersion, (new JQuery)->disableCacheWithConfigVersion()->jsUrl());
 
         $this->resetCdnConfig();
@@ -119,13 +119,13 @@ class JQueryTest extends BaseTest
         $this->assertEquals('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js', $jQuery->jsUrl());
 
         //Lib CDN changed in config
-        app()['config']->set('laravel-resource.libs.jquery.cdn', Unpkg::class);
+        app()['config']->set('laravel-asset.libs.jquery.cdn', Unpkg::class);
         $jQuery->configCdn();
         $this->assertEquals('https://unpkg.com/jquery@3.6.0/jquery.js', $jQuery->jsUrl());
 
         //No lib CDN set -> default CDN
-        app()['config']->set('laravel-resource.cdn', Cdnjs::class);
-        app()['config']->set('laravel-resource.libs.jquery',[
+        app()['config']->set('laravel-asset.cdn', Cdnjs::class);
+        app()['config']->set('laravel-asset.libs.jquery',[
             'version' => '3.6.0',
         ]);
         $jQuery->configCdn();

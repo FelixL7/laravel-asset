@@ -1,7 +1,7 @@
 <?php
 
-use FelixL7\Resource\CDNs\Cdnjs;
-use FelixL7\Resource\CDNs\JsDelivr;
+use FelixL7\Asset\CDNs\Cdnjs;
+use FelixL7\Asset\CDNs\JsDelivr;
 
 return [
     //main cdn -> required
@@ -11,7 +11,7 @@ return [
     'libs' => [
         //libName, must match $libName in library
         'bootstrap' => [
-            //use resource version -> required
+            //use asset version -> required
             'version' => '5.0.1',
             //overwrite main cdn
             'cdn' => JsDelivr::class,
