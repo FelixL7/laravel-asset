@@ -131,4 +131,54 @@ class JQueryTest extends BaseTest
         $jQuery->configCdn();
         $this->assertEquals('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js', $jQuery->jsUrl());
     }
+
+    public function testConfigOptions() {
+        //Lib Config Settings
+        app()['config']->set('laravel-asset.libs.jquery.min', true);
+        $this->assertTrue((new JQuery)->getMin());
+        app()['config']->set('laravel-asset.libs.jquery.min', false);
+        $this->assertFalse((new JQuery)->getMin());
+       
+        app()['config']->set('laravel-asset.libs.jquery.cache', false);
+        $this->assertFalse((new JQuery)->getCache());
+        app()['config']->set('laravel-asset.libs.jquery.cache', true);
+        $this->assertTrue((new JQuery)->getCache());
+        
+        app()['config']->set('laravel-asset.libs.jquery.cache_config_version', true);
+        $this->assertTrue((new JQuery)->getCacheConfigVersion());
+        app()['config']->set('laravel-asset.libs.jquery.cache_config_version', false);
+        $this->assertFalse((new JQuery)->getCacheConfigVersion());
+
+        app()['config']->set('laravel-asset.libs.jquery.loading_attribute', 'async');
+        $this->assertEquals('async', (new JQuery)->getLoadingAttribute());
+        app()['config']->set('laravel-asset.libs.jquery.loading_attribute', 'defer');
+        $this->assertEquals('defer', (new JQuery)->getLoadingAttribute());
+        app()['config']->set('laravel-asset.libs.jquery.loading_attribute', null);
+        $this->assertEquals(null, (new JQuery)->getLoadingAttribute());
+        
+        $this->resetCdnConfig();
+
+        //Global Config Settings
+        app()['config']->set('laravel-asset.min', true);
+        $this->assertTrue((new JQuery)->getMin());
+        app()['config']->set('laravel-asset.min', false);
+        $this->assertFalse((new JQuery)->getMin());
+
+        app()['config']->set('laravel-asset.cache', false);
+        $this->assertFalse((new JQuery)->getCache());
+        app()['config']->set('laravel-asset.cache', true);
+        $this->assertTrue((new JQuery)->getCache());
+        
+        app()['config']->set('laravel-asset.cache_config_version', true);
+        $this->assertTrue((new JQuery)->getCacheConfigVersion());
+        app()['config']->set('laravel-asset.cache_config_version', false);
+        $this->assertFalse((new JQuery)->getCacheConfigVersion());
+
+        app()['config']->set('laravel-asset.loading_attribute', 'async');
+        $this->assertEquals('async', (new JQuery)->getLoadingAttribute());
+        app()['config']->set('laravel-asset.loading_attribute', 'defer');
+        $this->assertEquals('defer', (new JQuery)->getLoadingAttribute());
+        app()['config']->set('laravel-asset.loading_attribute', null);
+        $this->assertEquals(null, (new JQuery)->getLoadingAttribute());
+    }
 }

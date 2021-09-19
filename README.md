@@ -73,6 +73,43 @@ return [
 ];
 ```
 
+You can use following settings in your lib or globally: min, cache, cache_config_version, loading_attribute. These will override the default settings for this attributes.
+
+```php
+use FelixL7\Asset\CDNs\Cdnjs;
+use FelixL7\Asset\CDNs\JsDelivr;
+
+return [
+    //main cdn -> required
+    'cdn' => Cdnjs::class,
+    //load only minified assets
+    'min' => true,
+
+    //libraries
+    'libs' => [
+        //libName, must match $libName in library
+        'bootstrap' => [
+            //use asset version -> required
+            'version' => '5.0.1',
+            //overwrite main cdn
+            'cdn' => JsDelivr::class,
+            //caching of assets will be disabled
+            'cache' => false,
+            //use cache_version, if not configured cache_version will be 1
+            'cache_config_version' => true,
+            //Load assets asynchronous
+            'loading_attribute' => 'async',
+        ],
+        'jquery' => [
+            'version' => '3.6.0',
+        ],
+        'swiper' => [
+            'version' => '6.5.8',
+        ],
+    ]
+];
+```
+
 ## Usage
 
 If you registered the library you can use it like:

@@ -157,4 +157,54 @@ class BootstrapTest extends BaseTest
         $this->assertEquals('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/dist/js/bootstrap.js', $bootstrap->jsUrl());
         $this->assertEquals('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/dist/css/bootstrap.css', $bootstrap->cssUrl());
     }
+
+    public function testConfigOptions() {
+        //Lib Config Settings
+        app()['config']->set('laravel-asset.libs.bootstrap.min', true);
+        $this->assertTrue((new Bootstrap)->getMin());
+        app()['config']->set('laravel-asset.libs.bootstrap.min', false);
+        $this->assertFalse((new Bootstrap)->getMin());
+       
+        app()['config']->set('laravel-asset.libs.bootstrap.cache', false);
+        $this->assertFalse((new Bootstrap)->getCache());
+        app()['config']->set('laravel-asset.libs.bootstrap.cache', true);
+        $this->assertTrue((new Bootstrap)->getCache());
+        
+        app()['config']->set('laravel-asset.libs.bootstrap.cache_config_version', true);
+        $this->assertTrue((new Bootstrap)->getCacheConfigVersion());
+        app()['config']->set('laravel-asset.libs.bootstrap.cache_config_version', false);
+        $this->assertFalse((new Bootstrap)->getCacheConfigVersion());
+
+        app()['config']->set('laravel-asset.libs.bootstrap.loading_attribute', 'async');
+        $this->assertEquals('async', (new Bootstrap)->getLoadingAttribute());
+        app()['config']->set('laravel-asset.libs.bootstrap.loading_attribute', 'defer');
+        $this->assertEquals('defer', (new Bootstrap)->getLoadingAttribute());
+        app()['config']->set('laravel-asset.libs.bootstrap.loading_attribute', null);
+        $this->assertEquals(null, (new Bootstrap)->getLoadingAttribute());
+        
+        $this->resetCdnConfig();
+
+        //Global Config Settings
+        app()['config']->set('laravel-asset.min', true);
+        $this->assertTrue((new Bootstrap)->getMin());
+        app()['config']->set('laravel-asset.min', false);
+        $this->assertFalse((new Bootstrap)->getMin());
+
+        app()['config']->set('laravel-asset.cache', false);
+        $this->assertFalse((new Bootstrap)->getCache());
+        app()['config']->set('laravel-asset.cache', true);
+        $this->assertTrue((new Bootstrap)->getCache());
+        
+        app()['config']->set('laravel-asset.cache_config_version', true);
+        $this->assertTrue((new Bootstrap)->getCacheConfigVersion());
+        app()['config']->set('laravel-asset.cache_config_version', false);
+        $this->assertFalse((new Bootstrap)->getCacheConfigVersion());
+
+        app()['config']->set('laravel-asset.loading_attribute', 'async');
+        $this->assertEquals('async', (new Bootstrap)->getLoadingAttribute());
+        app()['config']->set('laravel-asset.loading_attribute', 'defer');
+        $this->assertEquals('defer', (new Bootstrap)->getLoadingAttribute());
+        app()['config']->set('laravel-asset.loading_attribute', null);
+        $this->assertEquals(null, (new Bootstrap)->getLoadingAttribute());
+    }
 }

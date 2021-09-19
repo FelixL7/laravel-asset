@@ -16,6 +16,14 @@ abstract class AbstractLib
     protected $cdn = null;
     protected $has = [];
 
+    public function __construct()
+    {
+        $this->min = $this->configFromLibOrGlobal('min', false);
+        $this->cache = $this->configFromLibOrGlobal('cache', true);
+        $this->cacheConfigVersion = $this->configFromLibOrGlobal('cache_config_version', false);
+        $this->loadingAttribute = $this->configFromLibOrGlobal('loading_attribute');
+    }
+
 
     /**
      * ##############################################################################

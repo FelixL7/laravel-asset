@@ -156,4 +156,54 @@ class SwiperTest extends BaseTest
         $this->assertEquals('https://cdnjs.cloudflare.com/ajax/libs/Swiper/7.0.1/swiper-bundle.js', $swiper->jsUrl());
         $this->assertEquals('https://cdnjs.cloudflare.com/ajax/libs/Swiper/7.0.1/swiper-bundle.css', $swiper->cssUrl());
     }
+
+    public function testConfigOptions() {
+        //Lib Config Settings
+        app()['config']->set('laravel-asset.libs.swiper.min', true);
+        $this->assertTrue((new Swiper)->getMin());
+        app()['config']->set('laravel-asset.libs.swiper.min', false);
+        $this->assertFalse((new Swiper)->getMin());
+       
+        app()['config']->set('laravel-asset.libs.swiper.cache', false);
+        $this->assertFalse((new Swiper)->getCache());
+        app()['config']->set('laravel-asset.libs.swiper.cache', true);
+        $this->assertTrue((new Swiper)->getCache());
+        
+        app()['config']->set('laravel-asset.libs.swiper.cache_config_version', true);
+        $this->assertTrue((new Swiper)->getCacheConfigVersion());
+        app()['config']->set('laravel-asset.libs.swiper.cache_config_version', false);
+        $this->assertFalse((new Swiper)->getCacheConfigVersion());
+
+        app()['config']->set('laravel-asset.libs.swiper.loading_attribute', 'async');
+        $this->assertEquals('async', (new Swiper)->getLoadingAttribute());
+        app()['config']->set('laravel-asset.libs.swiper.loading_attribute', 'defer');
+        $this->assertEquals('defer', (new Swiper)->getLoadingAttribute());
+        app()['config']->set('laravel-asset.libs.swiper.loading_attribute', null);
+        $this->assertEquals(null, (new Swiper)->getLoadingAttribute());
+        
+        $this->resetCdnConfig();
+
+        //Global Config Settings
+        app()['config']->set('laravel-asset.min', true);
+        $this->assertTrue((new Swiper)->getMin());
+        app()['config']->set('laravel-asset.min', false);
+        $this->assertFalse((new Swiper)->getMin());
+
+        app()['config']->set('laravel-asset.cache', false);
+        $this->assertFalse((new Swiper)->getCache());
+        app()['config']->set('laravel-asset.cache', true);
+        $this->assertTrue((new Swiper)->getCache());
+        
+        app()['config']->set('laravel-asset.cache_config_version', true);
+        $this->assertTrue((new Swiper)->getCacheConfigVersion());
+        app()['config']->set('laravel-asset.cache_config_version', false);
+        $this->assertFalse((new Swiper)->getCacheConfigVersion());
+
+        app()['config']->set('laravel-asset.loading_attribute', 'async');
+        $this->assertEquals('async', (new Swiper)->getLoadingAttribute());
+        app()['config']->set('laravel-asset.loading_attribute', 'defer');
+        $this->assertEquals('defer', (new Swiper)->getLoadingAttribute());
+        app()['config']->set('laravel-asset.loading_attribute', null);
+        $this->assertEquals(null, (new Swiper)->getLoadingAttribute());
+    }
 }
